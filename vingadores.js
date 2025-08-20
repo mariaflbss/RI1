@@ -13,7 +13,7 @@ const capitaoAmerica = {
         "Arma Secundaria: " + this.armaSecundaria + "\n" +
         "Nivel de força: " + this.forca + "\n" +
         "Nivel de velocidade: " + this.velocidade + "\n" +
-        "Nivel de resistencia: " + this.resistencia
+        "Nivel de resistencia: " + this.resistencia;
     }   
 }
 
@@ -32,7 +32,7 @@ const homemDeFerro = {
         "Arma Secundaria: " + this.armaSecundaria + "\n" +
         "Nivel de força: " + this.forca + "\n" +
         "Nivel de velocidade: " + this.velocidade + "\n" +
-        "Nivel de resistencia: " + this.resistencia
+        "Nivel de resistencia: " + this.resistencia;
     }   
 }
 
@@ -51,7 +51,7 @@ const thor = {
         "Arma Secundaria: " + this.armaSecundaria + "\n" +
         "Nivel de força: " + this.forca + "\n" +
         "Nivel de velocidade: " + this.velocidade + "\n" +
-        "Nivel de resistencia: " + this.resistencia
+        "Nivel de resistencia: " + this.resistencia;
     }   
 }
 
@@ -70,10 +70,9 @@ const hulk = {
         "Arma Secundaria: " + this.armaSecundaria + "\n" +
         "Nivel de força: " + this.forca + "\n" +
         "Nivel de velocidade: " + this.velocidade + "\n" +
-        "Nivel de resistencia: " + this.resistencia
+        "Nivel de resistencia: " + this.resistencia;
     }   
 }
-
 
 const homemAranha = {
     nome: "Peter Park",
@@ -90,9 +89,10 @@ const homemAranha = {
         "Arma Secundaria: " + this.armaSecundaria + "\n" +
         "Nivel de força: " + this.forca + "\n" +
         "Nivel de velocidade: " + this.velocidade + "\n" +
-        "Nivel de resistencia: " + this.resistencia
+        "Nivel de resistencia: " + this.resistencia;
     }   
 }
+
 const gaviaoArqueiro = {
     nome: "Clint Barton",
     codinome: "Gavião Arqueiro",
@@ -108,7 +108,7 @@ const gaviaoArqueiro = {
         "Arma Secundaria: " + this.armaSecundaria + "\n" +
         "Nivel de força: " + this.forca + "\n" +
         "Nivel de velocidade: " + this.velocidade + "\n" +
-        "Nivel de resistencia: " + this.resistencia
+        "Nivel de resistencia: " + this.resistencia;
     }   
 }
 
@@ -127,7 +127,7 @@ const thanos = {
         "Arma Secundaria: " + this.armaSecundaria + "\n" +
         "Nivel de força: " + this.forca + "\n" +
         "Nivel de velocidade: " + this.velocidade + "\n" +
-        "Nivel de resistencia: " + this.resistencia
+        "Nivel de resistencia: " + this.resistencia;
     }   
 }
 
@@ -146,38 +146,49 @@ const senhorEstranho = {
         "Arma Secundaria: " + this.armaSecundaria + "\n" +
         "Nivel de força: " + this.forca + "\n" +
         "Nivel de velocidade: " + this.velocidade + "\n" +
-        "Nivel de resistencia: " + this.resistencia
+        "Nivel de resistencia: " + this.resistencia;
     }   
 }
 
-const vingadores = [capitaoAmerica, homemDeFerro, thor, hulk, homemAranha, gaviaoArqueiro, thanos, senhorEstranho];
+let vingadores = [
+    capitaoAmerica,
+    homemDeFerro,
+    thor,
+    hulk,
+    homemAranha,
+    gaviaoArqueiro,
+    thanos,
+    senhorEstranho
+];
 
-function comparacao(lista){
-    let maisVeloz = lista[0];
-    let maisForte = lista[0];
-    let maisResistente = lista[0];
-    
-    for (let p of lista){
-        if (p.velocidade > maisVeloz.velocidade){
-            maisVeloz = p;
+for (let i = 0; i < vingadores.length; i++) {
+    let atual = vingadores[i];
+
+    let maisVelozes = [];
+    let maisFortes = [];
+    let maisResistentes = [];
+
+    for (let j = 0; j < vingadores.length; j++) {
+        if (i === j) continue;
+
+        let outro = vingadores[j];
+
+        if (outro.velocidade > atual.velocidade) {
+            maisVelozes.push(outro.codinome);
         }
 
-        if (p.forca > maisForte.forca){
-            maisForte = p;
+        if (outro.forca > atual.forca) {
+            maisFortes.push(outro.codinome);
         }
 
-        if (p.resistencia > maisResistente.resistencia){
-            maisResistente = p;
+        if (outro.resistencia > atual.resistencia) {
+            maisResistentes.push(outro.codinome);
         }
     }
 
-    return "O mais veloz é " + maisVeloz.nome + "\n" +
-           "O mais forte é " + maisForte.nome + "\n" +
-           "O mais resistente é " + maisResistente.nome;
+    console.log(atual.descricao());
+    console.log("Personagens mais rápidos que " + atual.codinome + ": " + (maisVelozes.length > 0 ? maisVelozes.join(", ") : "Nenhum"));
+    console.log("Personagens mais fortes que " + atual.codinome + ": " + (maisFortes.length > 0 ? maisFortes.join(", ") : "Nenhum"));
+    console.log("Personagens mais resistentes que " + atual.codinome + ": " + (maisResistentes.length > 0 ? maisResistentes.join(", ") : "Nenhum"));
+    console.log("");
 }
-
-for (let p of vingadores) {
-    console.log(p.descricao() + "\n");
-}
-
-console.log(comparacao(vingadores));
